@@ -1,1 +1,12 @@
-4/17: work on making post request from client - APP.js to the api
+
+"Once a Response is retrieved, there are a number 
+    of methods available to define what the body content
+    is and how it should be handled (see Body)." Previously,
+    I was trying to parse the response in App.jsx as JSON, that's
+    why trying to do anything with it didn't work as expected, since
+    the response that I was sending in NoteDetail is not jason.
+https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API
+
+
+
+next: work on sending note content to noteDetail.
