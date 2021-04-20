@@ -10,3 +10,5 @@ https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API
 
 
 next: work on sending note content to noteDetail.
+
+next: work on how to get the info in noteDetail to app.js so that we can then store to database.
