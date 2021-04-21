@@ -11,4 +11,7 @@ https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API
 
 next: work on sending note content to noteDetail.
 
-next: work on how to get the info in noteDetail to app.js so that we can then store to database.
+next: setup mongo database on the server side. Useful links
+    //https://stackoverflow.com/questions/52910351/use-mongoose-into-a-express-route-file
+    //https://www.tutorialsteacher.com/nodejs/nodejs-module-exports
+/   /https://stackoverflow.com/questions/16631064/declare-multiple-module-exports-in-node-js
