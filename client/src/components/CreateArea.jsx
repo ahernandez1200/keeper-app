@@ -6,7 +6,8 @@ import Zoom from "@material-ui/core/Zoom";
 function CreateArea(props) {
   const [note, setNote] = useState({
     title: "",
-    content: ""
+    content: "",
+    identification: Math.random()
   });
 
   const [zoomIn, setZoomIn] = useState(false);
@@ -24,9 +25,11 @@ function CreateArea(props) {
 
   function submitNote(event) {
     props.onAdd(note);
+    //resetting note and generating new identification
     setNote({
       title: "",
-      content: ""
+      content: "",
+      identification: Math.random()
     });
     event.preventDefault();
   }

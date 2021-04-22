@@ -28,7 +28,7 @@ function App() {
   function deleteNote(id) {
     setNotes((prevNotes) => {
       return prevNotes.filter((noteItem, index) => {
-        return index !== id;
+        return noteItem.identification !== id;
       });
     });
   }
@@ -72,8 +72,10 @@ function App() {
       {notes.map((noteItem, index) => {
         return (
           <Note
-            key={index}
-            id={index}
+            // key={index}
+            // id={index}
+            key={noteItem.identification}
+            id={noteItem.identification}
             title={noteItem.title}
             content={noteItem.content}
             onDelete={deleteNote}
