@@ -8,8 +8,9 @@ var connection = require("../database/mongoose_connection");
 router.post('/', function(req, res, next) {
   
   
-  const post1 = new connection.theModel({title: "hhhhh", content: "hhhh"});
-  post1.save();
+  const newPost = 
+    new connection.keeperPostModel({title: req.body.title, content: req.body.content, id: req.body.identification});
+  newPost.save();
   res.send(req.body.title);
   console.log("in router")
 
