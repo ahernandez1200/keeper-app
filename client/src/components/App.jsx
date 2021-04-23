@@ -20,7 +20,7 @@ function App() {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(newNote)
     };
-    fetch("http://localhost:9000/", requestOptions)
+    fetch("http://localhost:9000/storeNote", requestOptions)
         .then(response => response.text())
         .then(data => setApiResponse(data));
   }
@@ -31,6 +31,17 @@ function App() {
         return noteItem.identification !== id;
       });
     });
+
+    const requestOptions = {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({id: id})
+    };
+    fetch("http://localhost:9000/deleteNote", requestOptions)
+      .then(response => response.text())
+      .then(data => setApiResponse(data));
+
+
   }
 
 

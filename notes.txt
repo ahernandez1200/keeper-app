@@ -14,4 +14,8 @@ next: work on sending note content to noteDetail.
 next: setup mongo database on the server side. Useful links
     //https://stackoverflow.com/questions/52910351/use-mongoose-into-a-express-route-file
     //https://www.tutorialsteacher.com/nodejs/nodejs-module-exports
-/   /https://stackoverflow.com/questions/16631064/declare-multiple-module-exports-in-node-js
+//https://stackoverflow.com/questions/16631064/declare-multiple-module-exports-in-node-js
+
+
+https://mongoosejs.com/docs/
+https://mongoosejs.com/docs/queries.html
