@@ -19,3 +19,12 @@ next: setup mongo database on the server side. Useful links
 
 https://mongoosejs.com/docs/
 https://mongoosejs.com/docs/queries.html
+
+
+
+//plan 4/25
+
+--when trying to get the posts form the db on startup, since we are using usestate, the page keeps rerendering so 
+  the fetch call is called continously as a result. 
+--So, try to have an array which we will fill on start-up. That is, we make a get request to noteStorage/retrieval 
+  and fill the array within that call, Then, in the return near the bottom of app.js, map those notes

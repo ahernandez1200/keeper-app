@@ -11,6 +11,25 @@ router.get('/', function(req, res, next) {
 
 });
 
+/*call to this route when we want to retreive the notes currently stored
+  in the db*/
+router.get('/retreive', function(req, res, next) {
+  
+  //console.log(connection.keeperPostModel.find({title: "DF" }))
+  connection.keeperPostModel.find({}, function (err, docs) {
+    if (err)
+      console.log(err);
+    else {
+      console.log(docs) //an array
+      res.send(JSON.stringify(docs));
+    }
+  });
+
+
+  //res.send( "retreive accesed" );
+
+});
+
 
 /*call to this route when we want to add a new note to the database.*/
 router.post('/', function(req, res, next) {
@@ -23,3 +42,4 @@ router.post('/', function(req, res, next) {
 });
 
 module.exports = router;
+

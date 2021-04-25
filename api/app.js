@@ -9,7 +9,7 @@ const bodyParser = require("body-parser");
 var indexRouter = require('./routes/index');
 //var usersRouter = require('./routes/users');
 //var testAPIRouter = require("./routes/testAPI");
-var storeNoteRouter = require("./routes/storeNote");
+var noteStorageRouter = require("./routes/noteStorage");
 var deleteNoteRouter = require("./routes/deleteNote")
 
 var app = express();
@@ -28,7 +28,7 @@ app.use(bodyParser.urlencoded({extended: true}));
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
-app.use('/storeNote', storeNoteRouter);
+app.use('/noteStorage', noteStorageRouter);
 app.use('/deleteNote', deleteNoteRouter);
 //app.use('/users', usersRouter);
 //app.use("/testAPI", testAPIRouter);

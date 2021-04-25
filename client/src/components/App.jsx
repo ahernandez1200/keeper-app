@@ -10,6 +10,78 @@ function App() {
   const [notes, setNotes] = useState([]);
   const [apiResponse, setApiResponse] = useState("");
 
+  //useEffect(() => {
+    // fetch("http://localhost:9000/noteStorage/retreive")
+    //     .then(res => res.json())
+    //     .then(res => {
+    //       console.log(res[0]);
+    //       res.forEach(element=>{
+    //         var newNote = {
+    //           title: element.title ,
+    //           content: element.content ,
+    //           identification: element.id
+    //         }
+    //         AddNote(newNote);
+    //       });
+    //     })
+    //     .catch(err => err);
+  //});
+
+  useEffect(() => {
+    fetch("http://localhost:9000/noteStorage/retreive")
+    .then(res => res.json())
+    .then(res => {
+      console.log(res.length) ;
+      for(var x = 0; x < res.length; x++) {
+          var newNote = {
+          title: res[x].title ,
+          content: res[x].content ,
+          identification: res[x].id
+        };
+        console.log("x IS EQUAL TO: " + x);
+        console.log(newNote);
+        // addInitialNotes(newNote);
+      }  
+      console.log("FOR LOOP FINISHED.")
+      // res.forEach(element=>{
+      //   var newNote = {
+      //     title: element.title ,
+      //     content: element.content ,
+      //     identification: element.id
+      //   }
+      //   AddInitialNotes(newNote);
+      // });
+    })
+    .catch(err => err);
+  });
+
+  // setInitialNotes();
+
+  // let setInitialNotes = async (url) => {
+
+  //   let response = await fetch(url);
+  //   let results = await response.json();
+  //   let theLength = await results.length;
+
+  //        for(var x = 0; x < await theLength; x++) {
+  //         var newNote = {
+  //         title: results[x].title ,
+  //         content: results[x].content ,
+  //         identification: results[x].id
+  //       };
+  //       AddInitialNotes(newNote);
+  //     }     
+  //   }
+
+
+  // setInitialNotes("http://localhost:9000/noteStorage/retreive");
+
+  function addInitialNotes(newNote) {
+    setNotes((prevNotes) => {
+      return [...prevNotes, newNote];
+    });
+  }
+
   function AddNote(newNote) {
     setNotes((prevNotes) => {
       return [...prevNotes, newNote];
@@ -20,7 +92,7 @@ function App() {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(newNote)
     };
-    fetch("http://localhost:9000/storeNote", requestOptions)
+    fetch("http://localhost:9000/noteStorage", requestOptions)
         .then(response => response.text())
         .then(data => setApiResponse(data));
   }
