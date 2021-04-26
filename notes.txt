@@ -20,6 +20,9 @@ next: setup mongo database on the server side. Useful links
 https://mongoosejs.com/docs/
 https://mongoosejs.com/docs/queries.html
 
+//using fetch, fetch + await
+https://dev.to/johnpaulada/synchronous-fetch-with-asyncawait
+
 
 
 //plan 4/25
