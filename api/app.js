@@ -7,9 +7,10 @@ var cors = require("cors");
 const bodyParser = require("body-parser");
 
 var indexRouter = require('./routes/index');
-var usersRouter = require('./routes/users');
-var testAPIRouter = require("./routes/testAPI");
-var noteDetailRouter=require("./routes/noteDetail");
+//var usersRouter = require('./routes/users');
+//var testAPIRouter = require("./routes/testAPI");
+var noteStorageRouter = require("./routes/noteStorage");
+var deleteNoteRouter = require("./routes/deleteNote")
 
 var app = express();
 
@@ -27,9 +28,10 @@ app.use(bodyParser.urlencoded({extended: true}));
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
-app.use('/', noteDetailRouter);
-app.use('/users', usersRouter);
-app.use("/testAPI", testAPIRouter);
+app.use('/noteStorage', noteStorageRouter);
+app.use('/deleteNote', deleteNoteRouter);
+//app.use('/users', usersRouter);
+//app.use("/testAPI", testAPIRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

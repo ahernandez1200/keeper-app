@@ -12,16 +12,21 @@ db.once('open', function() {
 
 const keeperPostSchema = new mongoose.Schema({
     title: String,
-    content: String
+    content: String,
+    id: Number
 });
 
 const KeeperPost = mongoose.model('KeeperPost', keeperPostSchema);
 
 
 module.exports = {
-    database: mongoose,
-    theModel: KeeperPost
+    mongooseDatabase: mongoose,
+    keeperPostModel: KeeperPost
 };
+
+
+
+
 
 //module.exports = mongoose;
 
