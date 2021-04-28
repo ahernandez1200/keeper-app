@@ -22,8 +22,6 @@ function App() {
     setInitialNotes(json);
   }
 
-  request();
-
   /*the objects will be extract from the passed in array and
     will then be added to notes array with AddInitialNotes*/
   function setInitialNotes(items) {
@@ -36,6 +34,9 @@ function App() {
         AddInitialNotes(newNote, initialDbSize);
     });
   }
+
+  request();
+
 
 
   function AddInitialNotes(newNote, dbSize) {
