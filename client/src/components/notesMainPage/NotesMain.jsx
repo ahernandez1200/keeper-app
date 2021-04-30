@@ -1,18 +1,122 @@
 import React, { useState, useEffect } from "react";
-import NotesMain from "./notesMainPage/NotesMain.jsx";
-import Register from "./RegisterPage/Register";
+import Header from "./Header";
+import Footer from "./Footer";
+import Note from "./Note";
+import CreateArea from "./CreateArea";
+import TheDate from "./TheDate";
 
-function App() {
+function NotesMain() {
+
+  const [notes, setNotes] = useState([]);
+  const [apiResponse, setApiResponse] = useState("");
+  //to hold the number of entries that are in the database upon startup
+  var initialDbSize;
+
+ 
+
+  const request = async () => {
+    const response = await fetch("http://localhost:9000/noteStorage/retreive");
+    var json = await response.json();
+    //console.log(await jsonR);
+    initialDbSize = json.length;
+    setInitialNotes(json);
+  }
+
+  request();
+
+  /*the objects will be extract from the passed in array and
+    will then be added to notes array with AddInitialNotes*/
+  function setInitialNotes(items) {
+    items.forEach(element=>{
+      var newNote = {
+        title: element.title ,
+        content: element.content ,
+        identification: element.id
+        };
+        AddInitialNotes(newNote, initialDbSize);
+    });
+  }
+
+
+  function AddInitialNotes(newNote, dbSize) {
+    setNotes((prevNotes) => {
+      /*if we just did return [...prevNotes, newNote], then the
+        page would countinously re-render and keep adding the newNote.
+        Adding this if-else block puts a break on this.
+      */
+      if(dbSize > prevNotes.length)
+        return [...prevNotes, newNote];
+      else
+        return prevNotes;
+    });
+  }
+
+  function AddNote(newNote) {
+    setNotes((prevNotes) => {
+      return [...prevNotes, newNote];
+    });
+
+    const requestOptions = {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(newNote)
+    };
+    fetch("http://localhost:9000/noteStorage", requestOptions)
+        .then(response => response.text())
+        .then(data => setApiResponse(data));
+  }
+
+  function deleteNote(id) {
+    setNotes((prevNotes) => {
+      return prevNotes.filter((noteItem, index) => {
+        return noteItem.identification !== id;
+      });
+    });
+
+    const requestOptions = {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({id: id})
+    };
+    fetch("http://localhost:9000/deleteNote", requestOptions)
+      .then(response => response.text())
+      .then(data => setApiResponse(data))
+      .then(initialDbSize--);
+
+
+  }
+
+
+
+
+
+
 
   return (
     <div>
-      {/* <NotesMain /> */}
-      <Register/>
+    <h1>{apiResponse}</h1>
+      <Header />
+      <TheDate />
+      <CreateArea onAdd={AddNote} />
+      {notes.map((noteItem, index) => {
+        return (
+          <Note
+            // key={index}
+            // id={index}
+            key={noteItem.identification}
+            id={noteItem.identification}
+            title={noteItem.title}
+            content={noteItem.content}
+            onDelete={deleteNote}
+          />
+        );
+      })}
+      <Footer />
     </div>
   );
 }
 
-export default App;
+export default NotesMain;
 
 
 

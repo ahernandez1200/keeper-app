@@ -7,7 +7,12 @@
     the response that I was sending in NoteDetail is not jason.
 https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API
 
+760-603-7911 14
+jking@isafeventures.com
+dc4, identity verification technology
 
+van goh experience
+bancsi los angeles
 
 next: work on sending note content to noteDetail.
 
@@ -22,6 +27,10 @@ https://mongoosejs.com/docs/queries.html
 
 //using fetch, fetch + await
 https://dev.to/johnpaulada/synchronous-fetch-with-asyncawait
+
+//creating multi-page react app with authentication
+https://www.digitalocean.com/community/tutorials/how-to-add-login-authentication-to-react-applications
+https://www.digitalocean.com/community/tutorials/how-to-handle-routing-in-react-apps-with-react-router
 
 
 
