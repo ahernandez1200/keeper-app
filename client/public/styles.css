@@ -119,8 +119,8 @@ form.create-note button {
 }
 
 .container {
-  margin: 4% auto;
-  padding: 80px 0;
+  margin: 2% auto;
+  padding: 10px 0;
   text-align: center;
 }
 
@@ -149,4 +149,16 @@ form.create-note button {
   border-radius: 3px;
   width: 250px;
   font-size: 18px;
+}
+
+.container button:hover {
+  background-color:rgb(142, 233, 245);
+}
+
+.register-header {
+  text-align: center;
+  padding: 40px 0 0 0;
+  color: rgb(255, 253, 245);
+  font-family: "McLaren", cursive;
+  font-weight: 200;
 }
