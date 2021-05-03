@@ -40,3 +40,21 @@ https://www.digitalocean.com/community/tutorials/how-to-handle-routing-in-react-
   the fetch call is called continously as a result. 
 --So, try to have an array which we will fill on start-up. That is, we make a get request to noteStorage/retrieval 
   and fill the array within that call, Then, in the return near the bottom of app.js, map those notes
+
+
+//plan 5/3
+
+1. in mongoose connection, modify the schema.
+  --now will contain 
+    {
+      username: String,
+      password: String,
+      posts: [{
+          title: String,
+          content: String,
+          id: Number
+      }]
+    }
+
+2. consider using the username as _id since each email is unique...dont do this unless you validate emails
+2. create new route for userregistration. we will access this route when making post requests

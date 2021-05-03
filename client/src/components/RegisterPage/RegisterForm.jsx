@@ -9,6 +9,8 @@ function MyRegisterForm() {
         password: "",
         passwordConfirm: ""
     });
+    
+
 
     function handleChange(event) {
         setRegInfo(previous=>{
@@ -23,7 +25,15 @@ function MyRegisterForm() {
     }
 
     function handleSubmit(event) {
-        console.log("submitted");
+
+        if(regInfo.password != regInfo.passwordConfirm) {
+            alert("Passwords do not match.");
+            setRegInfo( {email: "", password: "", passwordConfirm: ""});  
+        }
+        else {
+            //post request to register user.
+        }
+
         event.preventDefault();
     }
 
@@ -31,13 +41,13 @@ function MyRegisterForm() {
     return (
         <div>
             <h1 className = "register-header">Register</h1>
-            <form onChange = {handleChange} onSubmit={handleSubmit} className = "container">
+            <form onChange={handleChange} onSubmit={handleSubmit} className = "container">
                 <input name="email"
-                     type="email" placeholder="Email"/>
+                    value={regInfo.email} type="email" placeholder="Email"/>
                 <input name="password" 
-                    type="password" placeholder="Password"/>
+                    value={regInfo.password} type="password" placeholder="Password"/>
                 <input name="passwordConfirm" 
-                    type="password" placeholder="Confirm Password"/>
+                    value={regInfo.passwordConfirm} type="password" placeholder="Confirm Password"/>
                 <button  type="submit">Submit</button>
             </form>
         </div>
