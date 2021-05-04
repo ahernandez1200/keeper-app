@@ -58,3 +58,12 @@ https://www.digitalocean.com/community/tutorials/how-to-handle-routing-in-react-
 
 2. consider using the username as _id since each email is unique...dont do this unless you validate emails
 2. create new route for userregistration. we will access this route when making post requests
+
+
+
+plan 5/4
+
+--create login form
+--create route for login, make a post request for when the user is trying to validate their login info.
+  --check if the username exists, then check the password against what is in the database.
+--read about redirect

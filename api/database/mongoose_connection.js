@@ -1,6 +1,6 @@
 
 const mongoose = require('mongoose');
-mongoose.connect("mongodb://localhost:27017/keeperPostsDB");
+mongoose.connect("mongodb://localhost:27017/userPostsDB");
 
 
 //testing connection
@@ -10,19 +10,36 @@ db.once('open', function() {
   console.log("Connection Successful!");
 });
 
-const keeperPostSchema = new mongoose.Schema({
-    title: String,
-    content: String,
-    id: Number
+const userPostSchema = new mongoose.Schema({
+    username: String,
+    password: String,
+    posts: [{
+        title: String,
+        content: String,
+        id: Number
+    }]
 });
 
-const KeeperPost = mongoose.model('KeeperPost', keeperPostSchema);
-
+const UserPost = mongoose.model('UserPost', userPostSchema);
 
 module.exports = {
     mongooseDatabase: mongoose,
-    keeperPostModel: KeeperPost
+    userPostModel: UserPost
 };
+
+// const keeperPostSchema = new mongoose.Schema({
+//     title: String,
+//     content: String,
+//     id: Number
+// });
+
+// const KeeperPost = mongoose.model('KeeperPost', keeperPostSchema);
+
+
+// module.exports = {
+//     mongooseDatabase: mongoose,
+//     keeperPostModel: KeeperPost
+// };
 
 
 

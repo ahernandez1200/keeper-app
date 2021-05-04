@@ -9,6 +9,22 @@ router.get("/", (req, res, next) => {
 
 router.post("/", (req, res, next) => {
 
+    connection.userPostModel.find({username: req.body.email}, (err, doc) => {
+        if (err) {
+            res.send("Error encountered!");
+        }
+        else if (doc.length != 0) {
+            res.send("User already registered!");
+        }
+        else {
+            const newUser = 
+                new connection.userPostModel({username: req.body.email , password: req.body.password , posts: []});
+            newUser.save();
+            res.send("New user registered!");
+
+        }
+    });
+
 });
 
 

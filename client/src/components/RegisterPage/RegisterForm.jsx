@@ -31,7 +31,14 @@ function MyRegisterForm() {
             setRegInfo( {email: "", password: "", passwordConfirm: ""});  
         }
         else {
-            //post request to register user.
+            const requestOptions = {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(regInfo)
+            };
+            fetch("http://localhost:9000/registerUser", requestOptions)
+                .then(response => response.text())
+                .then(data => alert(data));
         }
 
         event.preventDefault();
