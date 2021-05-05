@@ -32,6 +32,7 @@ header h1 {
   font-weight: 200;
 }
 
+
 footer {
   position: absolute;
   text-align: center;
@@ -155,10 +156,26 @@ form.create-note button {
   background-color:rgb(142, 233, 245);
 }
 
+.container input:hover {
+  background-color:rgb(142, 233, 245);
+}
+
 .register-header {
   text-align: center;
   padding: 40px 0 0 0;
   color: rgb(255, 253, 245);
   font-family: "McLaren", cursive;
   font-weight: 200;
+}
+
+.to-register {
+  text-align: center;
+  font-style: italic;
+  color: orange;
+  font-family: "McLaren", cursive;
+  font-weight: 200;
+}
+
+.to-register:hover {
+  color: rgb(75, 180, 61);
 }

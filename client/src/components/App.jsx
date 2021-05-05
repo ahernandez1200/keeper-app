@@ -1,15 +1,34 @@
 import React, { useState, useEffect } from "react";
+import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import NotesMain from "./notesMainPage/NotesMain.jsx";
 import Register from "./RegisterPage/Register";
+import Login from "./LoginPage/Login"
 
 function App() {
 
   return (
     <div>
-      {/* <NotesMain /> */}
-      <Register/>
+      <BrowserRouter>
+        <Switch>
+          <Route exact path="/">
+            <Login />
+          </Route>
+          <Route exact path="/register">
+            <Register />
+          </Route>
+          <Route exact path="/notes">
+            <NotesMain />
+          </Route>
+        </Switch>
+      </BrowserRouter>
     </div>
-  );
+    );
+
+    // <div>
+      {/* <NotesMain /> */}
+      {/* <Register/> */}
+      {/* <Login/> */}
+    {/* </div> */}
 }
 
 export default App;
