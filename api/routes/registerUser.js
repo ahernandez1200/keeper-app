@@ -14,13 +14,13 @@ router.post("/", (req, res, next) => {
             res.send("Error encountered!");
         }
         else if (doc.length != 0) {
-            res.send("User already registered!");
+            res.send("Email already registered!");
         }
         else {
             const newUser = 
                 new connection.userPostModel({username: req.body.email , password: req.body.password , posts: []});
             newUser.save();
-            res.send("New user registered!");
+            res.send("Success! New user registered.");
 
         }
     });

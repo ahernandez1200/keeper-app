@@ -67,3 +67,6 @@ plan 5/4
 --create route for login, make a post request for when the user is trying to validate their login info.
   --check if the username exists, then check the password against what is in the database.
 --read about redirect
+
+5/5
+-redirect from register after successful login.
