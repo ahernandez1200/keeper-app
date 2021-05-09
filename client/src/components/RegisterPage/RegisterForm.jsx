@@ -18,6 +18,7 @@ function MyRegisterForm() {
         message: "",
         on: false
     });
+    const [returnToLogin, setReturnToLogin] = useState(false);
 
 
 
@@ -57,7 +58,7 @@ function MyRegisterForm() {
             fetch("http://localhost:9000/registerUser", requestOptions)
                 .then(response => response.text())
                 .then(data => {
-                    data.includes("Success") ? setSuccessfulReg(true) : setSuccessfulReg(false)                  
+                    data.includes("Success") ? setSuccessfulReg(true) : setSuccessfulReg(false);                  
                     return setAlert({message: data, on: true});
                 } );
         }
@@ -65,9 +66,13 @@ function MyRegisterForm() {
         event.preventDefault();
     }
 
+    function handleClick() {
+        setReturnToLogin(!returnToLogin);
+    }
 
-    // if(successfulReg)
-    //     return <Redirect to="/"/>;
+
+    if(returnToLogin)
+        return <Redirect to="/"/>;
 
     return (
         <div>
@@ -87,6 +92,7 @@ function MyRegisterForm() {
                     value={regInfo.passwordConfirm} type="password" placeholder="Confirm Password"/>
                 <button  type="submit">Submit</button>
             </form>
+            <h3 onClick={handleClick} className = "to-register">Return to Login? Click here.</h3>
         </div>
     )
 }
