@@ -1,10 +1,13 @@
 import React, { useState, useEffect } from "react";
 import { Redirect } from "react-router-dom";
+import Alert from '@material-ui/lab/Alert';
+import { useHistory } from "react-router-dom";
 
 
 
 
-function MyLoginForm() {
+
+function MyLoginForm(props) {
 
     const [loginInfo, setLoginInfo] = useState({
         email: "",
@@ -12,6 +15,11 @@ function MyLoginForm() {
     });
 
     const [regClicked, setRegClicked] = useState(false);
+    const [alert, setAlert] = useState({
+        message: "",
+        on: false
+    });
+    const [successfulLogin, setSuccessfulLogin] = useState(false);
     
 
     function handleChange(event) {
@@ -27,7 +35,6 @@ function MyLoginForm() {
     }
 
     function handleSubmit(event) {
-        console.log("in handle submit");
         const requestOptions = {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
@@ -35,7 +42,10 @@ function MyLoginForm() {
         };
         fetch("http://localhost:9000/login", requestOptions)
             .then(response => response.text())
-            .then(data => console.log(data));
+            .then(data => {
+                data.includes("Error") ? setAlert({message: data, on: true}) :
+                    setSuccessfulLogin(true);
+            });
 
         event.preventDefault();
     }
@@ -44,12 +54,25 @@ function MyLoginForm() {
         setRegClicked(true);
     }
 
-    if(regClicked) {
+    if(regClicked)
         return <Redirect to="/register"/>;
+    
+
+    if(successfulLogin) {
+        return <Redirect to={{
+            pathname: "/notes",
+            state: {username: loginInfo.email}
+        }}/>;
     }
     
     return (
         <div>
+            <Alert onClose={()=>setAlert({message: "", on: false})} 
+                variant="filled"
+                style= {alert.on ? {display: ""} : {display: "none"} }  
+                severity= "error"  >
+                {alert.message}
+            </Alert>
             <h1 className = "register-header">Login</h1>
             <form onChange={handleChange} onSubmit={handleSubmit} className = "container">
                 <input name="email"

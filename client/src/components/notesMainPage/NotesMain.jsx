@@ -5,10 +5,12 @@ import Note from "./Note";
 import CreateArea from "./CreateArea";
 import TheDate from "./TheDate";
 
-function NotesMain() {
+function NotesMain(props) {
 
   const [notes, setNotes] = useState([]);
   const [apiResponse, setApiResponse] = useState("");
+  //the email of the logged-in user
+  const emailOfUser = props.location.state.username;
   //to hold the number of entries that are in the database upon startup
   var initialDbSize;
 

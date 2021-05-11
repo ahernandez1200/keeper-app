@@ -13,6 +13,8 @@ router.post("/", (req, res, next) => {
         console.log(doc);
         if (err)
             res.send("Error! Unable to access database.");
+        else if(doc.length == 0)
+            res.send("Error! Email not registered!");
         else if(doc.length == 1)
             if(doc[0].password == req.body.password)
                 res.send("Successful login!");

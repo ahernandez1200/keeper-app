@@ -5,7 +5,9 @@ import Alert from '@material-ui/lab/Alert';
 
 
 
-function MyRegisterForm() {
+function MyRegisterForm(props) {
+
+    // console.log(props.history);
 
     const [regInfo, setRegInfo] = useState({
         email: "",
