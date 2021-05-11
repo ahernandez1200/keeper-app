@@ -15,5 +15,5 @@ However, I've expanded the original project by adding a back-end (Express/Node.j
   everyone would be saving their notes in the same space. Thus, everyone can see eachothers notes, delete
   them, etc...
   
-  This is the first web-app I've done that is Full Stack, so this project has been an incredibly valuable learning
-    experience.
+  ![Front-end](./images/notes_screen_s.png)
+
