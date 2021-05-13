@@ -16,47 +16,49 @@ function NotesMain(props) {
 
  
 
-  const request = async () => {
-    const response = await fetch("http://localhost:9000/noteStorage/retreive");
-    var json = await response.json();
-    //console.log(await jsonR);
-    initialDbSize = json.length;
-    setInitialNotes(json);
-  }
+  // const request = async () => {
+  //   const response = await fetch("http://localhost:9000/noteStorage/retreive");
+  //   var json = await response.json();
+  //   //console.log(await jsonR);
+  //   initialDbSize = json.length;
+  //   setInitialNotes(json);
+  // }
 
-  request();
+  // request();
 
-  /*the objects will be extract from the passed in array and
-    will then be added to notes array with AddInitialNotes*/
-  function setInitialNotes(items) {
-    items.forEach(element=>{
-      var newNote = {
-        title: element.title ,
-        content: element.content ,
-        identification: element.id
-        };
-        AddInitialNotes(newNote, initialDbSize);
-    });
-  }
+  // /*the objects will be extract from the passed in array and
+  //   will then be added to notes array with AddInitialNotes*/
+  // function setInitialNotes(items) {
+  //   items.forEach(element=>{
+  //     var newNote = {
+  //       title: element.title ,
+  //       content: element.content ,
+  //       identification: element.id
+  //       };
+  //       AddInitialNotes(newNote, initialDbSize);
+  //   });
+  // }
 
 
-  function AddInitialNotes(newNote, dbSize) {
-    setNotes((prevNotes) => {
-      /*if we just did return [...prevNotes, newNote], then the
-        page would countinously re-render and keep adding the newNote.
-        Adding this if-else block puts a break on this.
-      */
-      if(dbSize > prevNotes.length)
-        return [...prevNotes, newNote];
-      else
-        return prevNotes;
-    });
-  }
+  // function AddInitialNotes(newNote, dbSize) {
+  //   setNotes((prevNotes) => {
+  //     /*if we just did return [...prevNotes, newNote], then the
+  //       page would countinously re-render and keep adding the newNote.
+  //       Adding this if-else block puts a break on this.
+  //     */
+  //     if(dbSize > prevNotes.length)
+  //       return [...prevNotes, newNote];
+  //     else
+  //       return prevNotes;
+  //   });
+  // }
 
   function AddNote(newNote) {
     setNotes((prevNotes) => {
       return [...prevNotes, newNote];
     });
+    console.log("checking the new note:");
+    console.log(newNote);
 
     const requestOptions = {
         method: 'POST',
@@ -71,19 +73,19 @@ function NotesMain(props) {
   function deleteNote(id) {
     setNotes((prevNotes) => {
       return prevNotes.filter((noteItem, index) => {
-        return noteItem.identification !== id;
+        return noteItem.theNote.identification !== id;
       });
     });
 
-    const requestOptions = {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({id: id})
-    };
-    fetch("http://localhost:9000/deleteNote", requestOptions)
-      .then(response => response.text())
-      .then(data => setApiResponse(data))
-      .then(initialDbSize--);
+    // const requestOptions = {
+    //   method: 'POST',
+    //   headers: { 'Content-Type': 'application/json' },
+    //   body: JSON.stringify({id: id})
+    // };
+    // fetch("http://localhost:9000/deleteNote", requestOptions)
+    //   .then(response => response.text())
+    //   .then(data => setApiResponse(data))
+    //   .then(initialDbSize--);
 
 
   }
@@ -99,16 +101,16 @@ function NotesMain(props) {
     <h1>{apiResponse}</h1>
       <Header />
       <TheDate />
-      <CreateArea onAdd={AddNote} />
+      <CreateArea email={emailOfUser} onAdd={AddNote} />
       {notes.map((noteItem, index) => {
         return (
           <Note
             // key={index}
             // id={index}
-            key={noteItem.identification}
-            id={noteItem.identification}
-            title={noteItem.title}
-            content={noteItem.content}
+            key={noteItem.theNote.identification}
+            id={noteItem.theNote.identification}
+            title={noteItem.theNote.title}
+            content={noteItem.theNote.content}
             onDelete={deleteNote}
           />
         );

@@ -86,3 +86,7 @@ plan 5/4
 plan 5/12
 -fix the AddNote method in notesMain to accomodate for the changes made to the way 
   in which user posts are saved in the database
+
+  plan 5/13
+  -keep working on AddNote. We need to fix the logic in the post method of noteStorage
+  -use findOne.
