@@ -90,3 +90,6 @@ plan 5/12
   plan 5/13
   -keep working on AddNote. We need to fix the logic in the post method of noteStorage
   -use findOne.
+
+  https://stackoverflow.com/questions/33049707/push-items-into-mongo-array-via-mongoose
+https://docs.mongodb.com/manual/reference/operator/update/push/

@@ -31,20 +31,20 @@ router.get('/', function(req, res, next) {
 // });
 
 
-/*call to this route when we want to add a new note to the database.*/
+/*call to this route when we want to add a new note to a user's posts
+   array*/
 router.post('/', function(req, res, next) {
-
-  //seems like this will work.
-  /*however, we might actually have to use findoneandupdate as I'm not sure that
-    the changes will saved in this way*/
-  connection.userPostModel.find({username: req.body.username}, (err, doc)=>{
-    console.log("the doc is: ");
-    console.log(doc[0]);
-    doc[0].password = "aa";
-    console.log(doc);
-  });
-
-
+  connection.userPostModel.findOneAndUpdate(
+    {username: req.body.username},
+    {$push: {posts: req.body.theNote}},
+    (err, doc)=>{
+      if(err)
+        console.log(err);
+      else
+        console.log("Successful update - post added.");
+        console.log(doc);
+    }
+    );
 
   // console.log(req.body);
   
