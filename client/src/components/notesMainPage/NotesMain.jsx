@@ -57,8 +57,6 @@ function NotesMain(props) {
     setNotes((prevNotes) => {
       return [...prevNotes, newNote];
     });
-    console.log("checking the new note:");
-    console.log(newNote);
 
     const requestOptions = {
         method: 'POST',
@@ -77,15 +75,15 @@ function NotesMain(props) {
       });
     });
 
-    // const requestOptions = {
-    //   method: 'POST',
-    //   headers: { 'Content-Type': 'application/json' },
-    //   body: JSON.stringify({id: id})
-    // };
-    // fetch("http://localhost:9000/deleteNote", requestOptions)
-    //   .then(response => response.text())
-    //   .then(data => setApiResponse(data))
-    //   .then(initialDbSize--);
+    const requestOptions = {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({username: emailOfUser, id: id})
+    };
+    fetch("http://localhost:9000/deleteNote", requestOptions)
+      .then(response => response.text())
+      .then(data => setApiResponse(data))
+      .then(initialDbSize--);
 
 
   }
