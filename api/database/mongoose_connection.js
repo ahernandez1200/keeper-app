@@ -16,7 +16,7 @@ const userPostSchema = new mongoose.Schema({
     posts: [{
         title: String,
         content: String,
-        id: Number
+        identification: Number
     }]
 });
 
