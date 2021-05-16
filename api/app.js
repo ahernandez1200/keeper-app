@@ -10,7 +10,9 @@ var indexRouter = require('./routes/index');
 //var usersRouter = require('./routes/users');
 //var testAPIRouter = require("./routes/testAPI");
 var noteStorageRouter = require("./routes/noteStorage");
-var deleteNoteRouter = require("./routes/deleteNote")
+var deleteNoteRouter = require("./routes/deleteNote");
+var registerUserRouter = require("./routes/registerUser.js");
+var loginRouter = require("./routes/login.js");
 
 var app = express();
 
@@ -30,6 +32,8 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/', indexRouter);
 app.use('/noteStorage', noteStorageRouter);
 app.use('/deleteNote', deleteNoteRouter);
+app.use('/registerUser', registerUserRouter);
+app.use('/login', loginRouter);
 //app.use('/users', usersRouter);
 //app.use("/testAPI", testAPIRouter);
 

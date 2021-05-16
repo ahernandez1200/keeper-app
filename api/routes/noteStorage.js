@@ -11,17 +11,21 @@ router.get('/', function(req, res, next) {
 
 });
 
+router.get('/retreive', (req, res, next) => {
+  res.send("Read to retrieve notes from database.");
+})
+
 /*call to this route when we want to retreive the notes currently stored
-  in the db*/
-router.get('/retreive', function(req, res, next) {
-  
-  //console.log(connection.keeperPostModel.find({title: "DF" }))
-  connection.keeperPostModel.find({}, function (err, docs) {
-    if (err)
+  in the db for a particular user.*/
+router.post('/retreive', function(req, res, next) {
+
+  connection.userPostModel.find({username:req.body.username}, function (err, docs) {
+    if (err || (docs.length!=1) )
       console.log(err);
     else {
-      console.log(docs) //an array
-      res.send(JSON.stringify(docs));
+      console.log(docs) 
+      // res.send(JSON.stringify(docs));
+      res.send(docs);
     }
   });
 
@@ -31,13 +35,26 @@ router.get('/retreive', function(req, res, next) {
 });
 
 
-/*call to this route when we want to add a new note to the database.*/
+/*call to this route when we want to add a new note to a user's posts
+   array*/
 router.post('/', function(req, res, next) {
+  connection.userPostModel.findOneAndUpdate(
+    {username: req.body.username},
+    {$push: {posts: req.body.theNote}},
+    (err, doc)=>{
+      if(err)
+        console.log(err);
+      else
+        console.log("Successful update - post added.");
+        console.log(doc);
+    }
+    );
+
+  // console.log(req.body);
   
-  
-  const newPost = 
-    new connection.keeperPostModel({title: req.body.title, content: req.body.content, id: req.body.identification});
-  newPost.save();
+  // const newPost = 
+  //   new connection.keeperPostModel({title: req.body.title, content: req.body.content, id: req.body.identification});
+  // newPost.save();
   res.send("Post saved.");
 });
 

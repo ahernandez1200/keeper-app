@@ -32,6 +32,7 @@ header h1 {
   font-weight: 200;
 }
 
+
 footer {
   position: absolute;
   text-align: center;
@@ -116,4 +117,65 @@ form.create-note button {
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
   cursor: pointer;
   outline: none;
+}
+
+.container {
+  margin: 2% auto;
+  padding: 10px 0;
+  text-align: center;
+}
+
+.container input {
+  border: 1px solid rgba(252, 252, 252, 0.4);
+  background-color: rgba(252, 252, 252, 0.2);
+  width: 250px;
+  border-radius: 3px;
+  font-family: "Source Sans Pro", sans-serif;
+  padding: 20px 15px;
+  margin: 0 auto 10px auto;
+  display: block;
+  text-align: center;
+  font-size: 18px;
+  color: white;
+  font-weight: 300;
+}
+
+.container button {
+  appearance: none;
+  outline: 0;
+  background-color: white;
+  border: 0;
+  padding: 10px 15px;
+  color: #50a3a2;
+  border-radius: 3px;
+  width: 250px;
+  font-size: 18px;
+}
+
+.container button:hover {
+  background-color:rgb(142, 233, 245);
+}
+
+.container input:hover {
+  background-color:rgb(142, 233, 245);
+}
+
+.register-header {
+  text-align: center;
+  padding: 40px 0 0 0;
+  color: rgb(255, 253, 245);
+  font-family: "McLaren", cursive;
+  font-weight: 200;
+}
+
+.to-register {
+  text-align: center;
+  font-style: italic;
+  color: orange;
+  font-family: "McLaren", cursive;
+  font-weight: 200;
+}
+
+.to-register:hover {
+  color: rgb(75, 180, 61);
 }

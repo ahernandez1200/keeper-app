@@ -7,7 +7,12 @@
     the response that I was sending in NoteDetail is not jason.
 https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API
 
+760-603-7911 14
+jking@isafeventures.com
+dc4, identity verification technology
 
+van goh experience
+bancsi los angeles
 
 next: work on sending note content to noteDetail.
 
@@ -23,6 +28,21 @@ https://mongoosejs.com/docs/queries.html
 //using fetch, fetch + await
 https://dev.to/johnpaulada/synchronous-fetch-with-asyncawait
 
+//creating multi-page react app with authentication
+https://www.digitalocean.com/community/tutorials/how-to-add-login-authentication-to-react-applications
+https://www.digitalocean.com/community/tutorials/how-to-handle-routing-in-react-apps-with-react-router
+
+//troubleshooting accessing state from redirect.
+https://stackoverflow.com/questions/50328786/unable-to-access-this-props-location-in-component-after-redirect
+--basically, you will "cannot read property of state of undefined if you use something
+  like:
+  <Route exact path="/notes">
+            <NotesMain />
+  </Route>
+--to get it to work, it would have to be in the format:
+  <Route exact path="/notes" component={notesMain}/>
+
+
 
 
 //plan 4/25
@@ -31,3 +51,45 @@ https://dev.to/johnpaulada/synchronous-fetch-with-asyncawait
   the fetch call is called continously as a result. 
 --So, try to have an array which we will fill on start-up. That is, we make a get request to noteStorage/retrieval 
   and fill the array within that call, Then, in the return near the bottom of app.js, map those notes
+
+
+//plan 5/3
+
+1. in mongoose connection, modify the schema.
+  --now will contain 
+    {
+      username: String,
+      password: String,
+      posts: [{
+          title: String,
+          content: String,
+          id: Number
+      }]
+    }
+
+2. consider using the username as _id since each email is unique...dont do this unless you validate emails
+2. create new route for userregistration. we will access this route when making post requests
+
+
+
+plan 5/4
+
+--create login form
+--create route for login, make a post request for when the user is trying to validate their login info.
+  --check if the username exists, then check the password against what is in the database.
+--read about redirect
+
+5/5
+-redirect from register after successful login.
+
+
+plan 5/12
+-fix the AddNote method in notesMain to accomodate for the changes made to the way 
+  in which user posts are saved in the database
+
+  plan 5/13
+  -keep working on AddNote. We need to fix the logic in the post method of noteStorage
+  -use findOne.
+
+  https://stackoverflow.com/questions/33049707/push-items-into-mongo-array-via-mongoose
+https://docs.mongodb.com/manual/reference/operator/update/push/
