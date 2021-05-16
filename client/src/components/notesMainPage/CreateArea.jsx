@@ -55,14 +55,14 @@ function CreateArea(props) {
           style={zoomIn ? { display: "" } : { display: "none" }}
           name="title"
           onChange={handleChange}
-          value={note.title}
+          value={note.theNote.title}
           placeholder="Title"
         />
         <textarea
           onClick={handleClick}
           name="content"
           onChange={handleChange}
-          value={note.content}
+          value={note.theNote.content}
           placeholder="Take a note..."
           rows={zoomIn ? "3" : "1"}
         />

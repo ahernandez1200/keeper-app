@@ -11,24 +11,28 @@ router.get('/', function(req, res, next) {
 
 });
 
-// /*call to this route when we want to retreive the notes currently stored
-//   in the db*/
-// router.get('/retreive', function(req, res, next) {
-  
-//   //console.log(connection.keeperPostModel.find({title: "DF" }))
-//   connection.keeperPostModel.find({}, function (err, docs) {
-//     if (err)
-//       console.log(err);
-//     else {
-//       console.log(docs) //an array
-//       res.send(JSON.stringify(docs));
-//     }
-//   });
+router.get('/retreive', (req, res, next) => {
+  res.send("Read to retrieve notes from database.");
+})
+
+/*call to this route when we want to retreive the notes currently stored
+  in the db for a particular user.*/
+router.post('/retreive', function(req, res, next) {
+
+  connection.userPostModel.find({username:req.body.username}, function (err, docs) {
+    if (err || (docs.length!=1) )
+      console.log(err);
+    else {
+      console.log(docs) 
+      // res.send(JSON.stringify(docs));
+      res.send(docs);
+    }
+  });
 
 
-//   //res.send( "retreive accesed" );
+  //res.send( "retreive accesed" );
 
-// });
+});
 
 
 /*call to this route when we want to add a new note to a user's posts

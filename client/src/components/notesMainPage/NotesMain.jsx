@@ -8,50 +8,61 @@ import TheDate from "./TheDate";
 function NotesMain(props) {
 
   const [notes, setNotes] = useState([]);
-  const [apiResponse, setApiResponse] = useState("");
+  const [apiResponse, setApiResponse] = useState("hello");
+  const [emailOfUser, setEmailOfUser] = useState(props.location.state.username);
   //the email of the logged-in user
-  const emailOfUser = props.location.state.username;
+  // const emailOfUser = props.location.state.username;
   //to hold the number of entries that are in the database upon startup
   var initialDbSize;
 
- 
 
-  // const request = async () => {
-  //   const response = await fetch("http://localhost:9000/noteStorage/retreive");
-  //   var json = await response.json();
-  //   //console.log(await jsonR);
-  //   initialDbSize = json.length;
-  //   setInitialNotes(json);
-  // }
+  const request = async () => {
+    const requestOptions = {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({username: emailOfUser})
+    };
+    const response = await fetch("http://localhost:9000/noteStorage/retreive",requestOptions);
+    var json = await response.json();
+    console.log(await json[0]);
+    initialDbSize = json[0].posts.length;
+    setInitialNotes(json);
+  }
 
-  // request();
+  /*the objects will be extracted from the passed in array and
+    will then be added to notes array with AddInitialNotes*/
+  function setInitialNotes(items) {
+    items[0].posts.forEach(element=>{
+      console.log("In setInitialNotes...");
+      // console.log(items[0].posts);
+      console.log(items[0].username);
+      var newNote = {
+        username:items[0].username,
+        theNote: {
+           title: element.title,
+           content: element.content,
+           identification: element.identification
+          }
+        };
+        AddInitialNotes(newNote, initialDbSize);
+    });
+  }
 
-  // /*the objects will be extract from the passed in array and
-  //   will then be added to notes array with AddInitialNotes*/
-  // function setInitialNotes(items) {
-  //   items.forEach(element=>{
-  //     var newNote = {
-  //       title: element.title ,
-  //       content: element.content ,
-  //       identification: element.id
-  //       };
-  //       AddInitialNotes(newNote, initialDbSize);
-  //   });
-  // }
+  function AddInitialNotes(newNote, dbSize) {
+    console.log("dbSize is: " + dbSize + "....prevNotes l is: " + notes.length);
+    setNotes((prevNotes) => {
+      /*if we just did return [...prevNotes, newNote], then the
+        page would countinously re-render and keep adding the newNote.
+        Adding this if-else block puts a break on this.
+      */
+      if(dbSize > prevNotes.length)
+        return [...prevNotes, newNote];
+      else
+        return prevNotes;
+    });
+  }
 
-
-  // function AddInitialNotes(newNote, dbSize) {
-  //   setNotes((prevNotes) => {
-  //     /*if we just did return [...prevNotes, newNote], then the
-  //       page would countinously re-render and keep adding the newNote.
-  //       Adding this if-else block puts a break on this.
-  //     */
-  //     if(dbSize > prevNotes.length)
-  //       return [...prevNotes, newNote];
-  //     else
-  //       return prevNotes;
-  //   });
-  // }
+  request();
 
   function AddNote(newNote) {
     setNotes((prevNotes) => {
