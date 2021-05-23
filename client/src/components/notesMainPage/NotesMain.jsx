@@ -22,11 +22,12 @@ function NotesMain(props) {
   
   const [notes, setNotes] = useState([]);
   const [apiResponse, setApiResponse] = useState("hello");
-  
-  const [emailOfUser, setEmailOfUser] = useState(props.location.state.username);
   //the email of the logged-in user
   // const emailOfUser = props.location.state.username;
+  const [emailOfUser, setEmailOfUser] = useState(props.location.state.username);
+  const [logout, setLogout] = useState(false);
   //to hold the number of entries that are in the database upon startup
+
   var initialDbSize;
 
   
@@ -113,16 +114,18 @@ function NotesMain(props) {
 
   }
 
-  // if(props.location.state.username == undefined) {
-  //   console.log("is null");
-  //   return <Redirect to="/"/>;
-  // }
+  function handleClickLogout() {
+    setLogout( previous=>!previous );
+  }
+
+  if(logout)
+    return <Redirect to="/"></Redirect>
 
 
   return (
     <div>
     {/* <h1>{apiResponse}</h1> */}
-      <Header inNotes={true}/>
+      <Header logoutFunc={handleClickLogout} inNotes={true}/>
       <TheDate />
       <CreateArea email={emailOfUser} onAdd={AddNote} />
       {notes.map((noteItem, index) => {
