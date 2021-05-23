@@ -7,14 +7,11 @@
     the response that I was sending in NoteDetail is not jason.
 https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API
 
-760-603-7911 14
-jking@isafeventures.com
-dc4, identity verification technology
 
-van goh experience
-bancsi los angeles
 
-next: work on sending note content to noteDetail.
+https://expressjs.com/en/starter/generator.html
+https://daveceddia.com/create-react-app-express-backend/
+https://expressjs.com/en/starter/generator.html
 
 next: setup mongo database on the server side. Useful links
     //https://stackoverflow.com/questions/52910351/use-mongoose-into-a-express-route-file
@@ -34,7 +31,7 @@ https://www.digitalocean.com/community/tutorials/how-to-handle-routing-in-react-
 
 //troubleshooting accessing state from redirect.
 https://stackoverflow.com/questions/50328786/unable-to-access-this-props-location-in-component-after-redirect
---basically, you will "cannot read property of state of undefined if you use something
+--basically, you will get "cannot read property of state of undefined if you use something
   like:
   <Route exact path="/notes">
             <NotesMain />
