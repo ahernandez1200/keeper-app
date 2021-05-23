@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { Redirect } from "react-router-dom";
 import Alert from '@material-ui/lab/Alert';
 import { useHistory } from "react-router-dom";
+import zIndex from "@material-ui/core/styles/zIndex";
 
 
 
@@ -66,7 +67,7 @@ function MyLoginForm(props) {
     }
     
     return (
-        <div>
+        <div >
             <Alert onClose={()=>setAlert({message: "", on: false})} 
                 variant="filled"
                 style= {alert.on ? {display: ""} : {display: "none"} }  

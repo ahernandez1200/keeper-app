@@ -4,18 +4,33 @@ import Footer from "./Footer";
 import Note from "./Note";
 import CreateArea from "./CreateArea";
 import TheDate from "./TheDate";
+import { Redirect } from "react-router-dom";
+
+
+function NotesMainWrapper(props) {
+  //if the user is not logged-in, we return to the login page.
+  if(props.location.state == undefined)
+     return <Redirect to="/"/>;
+  else
+    return NotesMain(props);
+}
 
 function NotesMain(props) {
 
+  // if(props.location.state == undefined)
+  //   return <Redirect to="/"/>;
+  
   const [notes, setNotes] = useState([]);
   const [apiResponse, setApiResponse] = useState("hello");
-  const [emailOfUser, setEmailOfUser] = useState(props.location.state.username);
   //the email of the logged-in user
   // const emailOfUser = props.location.state.username;
+  const [emailOfUser, setEmailOfUser] = useState(props.location.state.username);
+  const [logout, setLogout] = useState(false);
   //to hold the number of entries that are in the database upon startup
+
   var initialDbSize;
 
-
+  
   const request = async () => {
     const requestOptions = {
       method: 'POST',
@@ -99,16 +114,18 @@ function NotesMain(props) {
 
   }
 
+  function handleClickLogout() {
+    setLogout( previous=>!previous );
+  }
 
-
-
-
+  if(logout)
+    return <Redirect to="/"></Redirect>
 
 
   return (
     <div>
-    <h1>{apiResponse}</h1>
-      <Header />
+    {/* <h1>{apiResponse}</h1> */}
+      <Header logoutFunc={handleClickLogout} inNotes={true}/>
       <TheDate />
       <CreateArea email={emailOfUser} onAdd={AddNote} />
       {notes.map((noteItem, index) => {
@@ -129,7 +146,7 @@ function NotesMain(props) {
   );
 }
 
-export default NotesMain;
+export default NotesMainWrapper;
 
 
 
