@@ -1,8 +1,8 @@
 
 const mongoose = require('mongoose');
-mongoose.connect("mongodb://localhost:27017/userPostsDB");
+mongoose.connect("mongodb+srv://admin-anthony:test123@cluster0.tiefl.mongodb.net/userPostsDB");
 
-
+//userPostsDB
 //testing connection
 const db = mongoose.connection;
 db.on('error', console.error.bind(console, 'connection error:'));
