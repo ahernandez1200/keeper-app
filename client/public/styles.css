@@ -36,13 +36,13 @@ header h1 {
 .logout {
   font-size: 1.5rem;
   padding-top: 8px;
-  color: rgb(122, 114, 41);
+  color: rgb(255, 0, 0);
   float: right;
   font-weight: 50;
 }
 
 .logout:hover {
-  color: red;
+  color: rgb(226, 17, 17);
 }
 
 footer {
